@@ -112,25 +112,6 @@
       color: #444;
       max-width: 90%;
     }
-
-    /* Button */
-    .btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #ff4d79;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      display: none; /* hidden until animation ends */
-    }
-
-    .btn:hover {
-      background: #e63366;
-      transform: scale(1.05);
-    }
   </style>
 </head>
 <body>
@@ -156,7 +137,6 @@
           <p>Wishing you a day full of love, laughter, and endless joy. 🌸</p>
           <p>You are truly special, and I hope this year brings you happiness and success. 🥳</p>
           <p>Enjoy your day to the fullest — you deserve it! 💕</p>
-          <button class="btn" id="mainSiteBtn">Now to Main Website →</button>
         </div>
       </div>
     </div>
@@ -164,22 +144,10 @@
 
   <script>
     const card = document.getElementById("birthdayCard");
-    const btn = document.getElementById("mainSiteBtn");
 
     // Open card on click
     card.addEventListener("click", () => {
       card.classList.add("open");
-
-      // Show button after animation
-      setTimeout(() => {
-        btn.style.display = "inline-block";
-      }, 1500);
-    });
-
-    // Redirect to main site
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent re-triggering card flip
-      window.location.href = "https://tanmaygarg2009.github.io/shurti/";
     });
   </script>
 
