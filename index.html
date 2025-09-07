@@ -22,8 +22,8 @@
     }
 
     .card {
-      width: 400px;
-      height: 250px;
+      width: 900px;
+      height: 500px;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 1.5s ease;
@@ -33,45 +33,87 @@
       transform: rotateY(-180deg);
     }
 
-    .front, .inside {
+    /* Cover Page */
+    .cover {
       position: absolute;
       width: 100%;
       height: 100%;
-      backface-visibility: hidden;
+      background: #ff4d79;
       border-radius: 15px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      backface-visibility: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-    }
-
-    .front {
-      background: #ff4d79;
       color: white;
-      font-size: 1.5rem;
+      font-size: 2.5rem;
       font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-family: 'Georgia', serif;
     }
 
+    .cover p {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Inside Pages */
     .inside {
+      position: absolute;
+      width: 100%;
+      height: 100%;
       background: white;
-      color: #333;
+      border-radius: 15px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+      backface-visibility: hidden;
       transform: rotateY(180deg);
+      display: flex;
+    }
+
+    /* Left side - Image */
+    .inside-left {
+      width: 50%;
+      border-right: 2px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .inside-left img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+    }
+
+    /* Right side - Message */
+    .inside-right {
+      width: 50%;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
-    .inside h2 {
+    .inside-right h2 {
       margin: 10px 0;
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #ff4d79;
     }
 
-    .inside p {
+    .inside-right p {
       font-size: 1rem;
       margin: 8px 0;
+      color: #444;
+      max-width: 90%;
     }
 
+    /* Button */
     .btn {
       margin-top: 20px;
       padding: 10px 20px;
@@ -81,12 +123,13 @@
       border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
       display: none; /* hidden until animation ends */
     }
 
     .btn:hover {
       background: #e63366;
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -94,17 +137,27 @@
 
   <div class="card-container">
     <div class="card" id="birthdayCard">
-      <!-- Front Cover -->
-      <div class="front">
-        🎉 Click to Open 🎂
-        <p style="font-size: 1rem; margin-top: 10px;">(Happy Birthday Card)</p>
+      <!-- Cover (Front Page) -->
+      <div class="cover">
+        Happy Birthday 🎉
+        <p>(Click to Open)</p>
       </div>
-      <!-- Inside Message -->
+
+      <!-- Inside Pages -->
       <div class="inside">
-        <h2>Happy Birthday, Shruti! 💖</h2>
-        <p>Wishing you joy, love, and all the happiness in the world today and always! 🌸</p>
-        <p>Hope this year is full of amazing memories and endless smiles. 🥳</p>
-        <button class="btn" id="mainSiteBtn">Now to Main Website →</button>
+        <!-- Left side (image) -->
+        <div class="inside-left">
+          <img src="6.jpg" alt="Birthday Image">
+        </div>
+
+        <!-- Right side (message) -->
+        <div class="inside-right">
+          <h2>Happy Birthday, Shruti! 💖</h2>
+          <p>Wishing you a day full of love, laughter, and endless joy. 🌸</p>
+          <p>You are truly special, and I hope this year brings you happiness and success. 🥳</p>
+          <p>Enjoy your day to the fullest — you deserve it! 💕</p>
+          <button class="btn" id="mainSiteBtn">Now to Main Website →</button>
+        </div>
       </div>
     </div>
   </div>
@@ -113,19 +166,20 @@
     const card = document.getElementById("birthdayCard");
     const btn = document.getElementById("mainSiteBtn");
 
-    // Click to open card
+    // Open card on click
     card.addEventListener("click", () => {
       card.classList.add("open");
 
-      // Show button after opening
+      // Show button after animation
       setTimeout(() => {
         btn.style.display = "inline-block";
-      }, 1500); // matches animation duration
+      }, 1500);
     });
 
-    // Redirect on button click
-    btn.addEventListener("click", () => {
-      window.location.href = "https://example.com"; // 🔗 put your main site link here
+    // Redirect to main site
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent re-triggering card flip
+      window.location.href = "https://tanmaygarg2009.github.io/shurti/";
     });
   </script>
 
